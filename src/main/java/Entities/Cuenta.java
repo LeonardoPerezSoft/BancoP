@@ -21,12 +21,12 @@ public class Cuenta {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id")
+    //@JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
 
 
-    @OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Movimientos> movimientos = new ArrayList<>();
 
 

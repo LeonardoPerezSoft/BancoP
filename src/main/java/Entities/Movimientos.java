@@ -18,7 +18,7 @@ public class Movimientos {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id")
+    //@JoinColumn(name = "cliente_id")
     private Cuenta cuenta;
 
 
