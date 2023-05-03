@@ -1,32 +1,38 @@
 package Entities;
 
+import io.smallrye.common.constraint.NotNull;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Check;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-public class Movimientos {
+public class Movimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private Date fecha;
-    private String tipoMovimiento;
+    @Check(constraints = "tipoMovimiento = 'Retiro' OR tipoMovimiento = 'Deposito'")
+    public String tipoMovimiento;
+
     private float valor;
     private float saldo;
 
 
+
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "cliente_id")
     private Cuenta cuenta;
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -60,5 +66,13 @@ public class Movimientos {
 
     public void setSaldo(float saldo) {
         this.saldo = saldo;
+    }
+
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
     }
 }

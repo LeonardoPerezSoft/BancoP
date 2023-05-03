@@ -9,21 +9,22 @@ public abstract class Persona {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    private Long Id;
+    private Long id;
     private String nombre;
     private String genero;
     private int edad;
+    @Column(unique = true)
     private String identificacion;
 
     private String direccion;
     private String telefono;
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getNombre() {

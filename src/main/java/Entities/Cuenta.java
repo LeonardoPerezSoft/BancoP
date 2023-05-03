@@ -1,8 +1,13 @@
 package Entities;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.JoinColumnOrFormula;
+import Entities.Movimiento;
 
+import io.smallrye.common.constraint.NotNull;
+import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,19 +21,14 @@ public class Cuenta {
     @Column(length = 20, unique = true)
     private String numeroCuenta;
     private String tipoCuenta;
-    private String saldoInicial;
-    private String estado;
+    private float saldoInicial;
+    private boolean estado;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "cliente_id")
+    @JoinColumn(foreignKey = @ForeignKey(name = "cuenta_fk"))
+    @OnDelete(action = OnDeleteAction.RESTRICT)
     private Cliente cliente;
-
-
-
-    @OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Movimientos> movimientos = new ArrayList<>();
-
 
 
     public Long getId() {
@@ -55,19 +55,44 @@ public class Cuenta {
         this.tipoCuenta = tipoCuenta;
     }
 
-    public String getSaldoInicial() {
+    public float getSaldoInicial() {
         return saldoInicial;
     }
 
-    public void setSaldoInicial(String saldoInicial) {
+    public void setSaldoInicial(float saldoInicial) {
         this.saldoInicial = saldoInicial;
     }
 
-    public String getEstado() {
+    public boolean isEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    @Override
+    public String toString() {
+        return "Cuenta{" +
+                "id=" + id +
+                ", numeroCuenta='" + numeroCuenta + '\'' +
+                ", tipoCuenta='" + tipoCuenta + '\'' +
+                ", saldoInicial=" + saldoInicial +
+                ", estado=" + estado +
+                ", cliente=" + cliente.getId() +
+                '}';
+    }
 }
+
+
+
+
+

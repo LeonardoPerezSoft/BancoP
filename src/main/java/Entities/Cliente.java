@@ -11,16 +11,12 @@ import java.util.List;
 @Entity
 public class Cliente extends Persona {
 
-    //@Column(length = 50, unique = true)
-    //private String clienteId;
+
     private String contrasena;
-    private String estado;
+    private boolean estado;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cuenta> cuentas = new ArrayList<>();
-
-
-
+//    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Cuenta> cuentas = new ArrayList<>();
 
 
     public String getContrasena() {
@@ -31,11 +27,11 @@ public class Cliente extends Persona {
         this.contrasena = contrasena;
     }
 
-    public String getEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 

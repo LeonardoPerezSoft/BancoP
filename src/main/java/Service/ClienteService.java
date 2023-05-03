@@ -38,6 +38,8 @@ public class ClienteService {
         clienteExistente.setIdentificacion(cliente.getIdentificacion());
         clienteExistente.setDireccion(cliente.getDireccion());
         clienteExistente.setTelefono(cliente.getTelefono());
+        clienteExistente.setContrasena(cliente.getContrasena());
+        clienteExistente.setEstado(cliente.getEstado());
         clienteRepository.persist(clienteExistente);
         return clienteExistente;
     }
