@@ -4,7 +4,9 @@ import io.smallrye.common.constraint.NotNull;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Check;
 
-import java.math.BigDecimal;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -13,7 +15,7 @@ public class Movimiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private Date fecha;
+    private LocalDate fecha;
     @Check(constraints = "tipoMovimiento = 'Retiro' OR tipoMovimiento = 'Deposito'")
     public String tipoMovimiento;
 
@@ -24,7 +26,7 @@ public class Movimiento {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "cuenta_id")
     private Cuenta cuenta;
 
 
@@ -36,11 +38,11 @@ public class Movimiento {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

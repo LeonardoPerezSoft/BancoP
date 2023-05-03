@@ -35,7 +35,6 @@ public class MovimientoService implements PanacheRepository<Movimiento> {
     @Transactional
     public Movimiento crearMovimiento(Movimiento movimiento){
          actualizar_cuenta(movimiento);
-
          movimientoRepository.persist(movimiento);
         return movimiento;
 
@@ -93,23 +92,6 @@ public class MovimientoService implements PanacheRepository<Movimiento> {
             return false;
         return true;
     }
-
-
-
-//    @Transactional
-//    public Movimiento crearMovimiento(Movimiento movimiento) {
-//        movimientoRepository.persist(movimiento);
-//        Cuenta cuenta = cuentaRepository.findById(movimiento.getCuenta().getId());
-//        BigDecimal nuevoSaldo = cuenta.getSaldoActual().add(movimiento.getValor());
-//        cuenta.setSaldoInicial(nuevoSaldo);
-//        cuentaRepository.persist(cuenta);
-//        return movimiento;
-//    }
-//
-//    public List<Movimiento> obtenerMovimientos(Long cuentaId, Date fechaInicio, Date fechaFin) {
-//        return movimientoRepository.findBetweenDates(cuentaId, fechaInicio, fechaFin);
-//    }
-
 
 
 
