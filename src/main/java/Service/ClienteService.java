@@ -14,6 +14,11 @@ public class ClienteService {
     @Inject
     ClienteRepository clienteRepository;
 
+
+    public ClienteService(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
+    }
+
     public List<Cliente> getAllClientes() {
         return clienteRepository.listAll();
     }
@@ -25,6 +30,7 @@ public class ClienteService {
     @Transactional
     public Cliente crearCliente(Cliente cliente) {
         clienteRepository.persist(cliente);
+
         return cliente;
     }
 

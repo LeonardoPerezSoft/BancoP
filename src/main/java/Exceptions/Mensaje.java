@@ -1,14 +1,16 @@
 package Exceptions;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Mensaje {
     private String error;
    // private String detalle;
     private String notificacion;
 
-
     private LocalDateTime data;
+
+
 
     public String getNotificacion() {
         return notificacion;
@@ -30,11 +32,36 @@ public class Mensaje {
         return error;
     }
 
+    @Override
+    public String toString() {
+        return "Mensaje{" +
+                "error='" + error + '\'' +
+                ", notificacion='" + notificacion + '\'' +
+                ", data=" + data +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Mensaje mensaje = (Mensaje) o;
+        return Objects.equals(error, mensaje.error) && Objects.equals(notificacion, mensaje.notificacion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(error, notificacion);
+    }
+
     public void setError(String error) {
         this.error = error;
         LocalDateTime now = LocalDateTime.now();
         setData(now);
     }
+
+
+
 
 //    public String getDetalle() {
 //        return detalle;
@@ -54,7 +81,6 @@ public class Mensaje {
 
      public void mensajeNotFound(String mensajeN){
          setError(mensajeN);
-
          LocalDateTime now = LocalDateTime.now();
          setData(now);
     }

@@ -5,10 +5,14 @@ import jakarta.inject.Inject;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Check;
 
+import java.util.Objects;
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Persona {
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -23,6 +27,22 @@ public abstract class Persona {
 
     private String direccion;
     private String telefono;
+
+
+    public Persona() {
+    }
+
+    public Persona(Long id, String nombre, String genero, int edad, String identificacion, String direccion, String telefono) {
+        this.id = id;
+        this.nombre = nombre;
+        this.genero = genero;
+        this.edad = edad;
+        this.identificacion = identificacion;
+        this.direccion = direccion;
+        this.telefono = telefono;
+    }
+
+
 
     public Long getId() {
         return id;
@@ -80,7 +100,18 @@ public abstract class Persona {
         this.telefono = telefono;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Persona persona = (Persona) o;
+        return edad == persona.edad && Objects.equals(id, persona.id) && Objects.equals(nombre, persona.nombre) &&
+                Objects.equals(genero, persona.genero) && Objects.equals(identificacion, persona.identificacion) &&
+                Objects.equals(direccion, persona.direccion) && Objects.equals(telefono, persona.telefono);
+    }
 
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, genero, edad, identificacion, direccion, telefono);
+    }
 }

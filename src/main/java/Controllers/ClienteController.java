@@ -18,6 +18,9 @@ public class ClienteController {
     @Inject
     ClienteService clienteService;
 
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
+    }
 
     @GET
     public Response getAllClientes() {
