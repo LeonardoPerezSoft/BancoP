@@ -1,6 +1,5 @@
 package Controllers;
 
-import Entities.Cliente;
 import Entities.Movimiento;
 import Exceptions.Mensaje;
 import Service.MovimientoService;
@@ -48,7 +47,7 @@ public class MovimientoController {
 
         } catch (Exception e) {
             Mensaje messageResponse = new Mensaje();
-            messageResponse.buildMessageBdError(e.getCause().getCause().getCause().getMessage());
+            messageResponse.setError(e.getCause().getCause().getCause().getMessage());
             return Response.ok(messageResponse).status(Response.Status.BAD_REQUEST).build();
         }
     }
@@ -62,7 +61,7 @@ public class MovimientoController {
         } catch (Exception e) {
 
             Mensaje messageResponse = new Mensaje();
-            messageResponse.buildMessageBdError(e.getCause().getMessage());
+            messageResponse.setError(e.getCause().getMessage());
             return Response.ok(messageResponse).status(Response.Status.BAD_REQUEST).build();
         }
     }
@@ -89,7 +88,7 @@ public class MovimientoController {
 
         } catch (Exception e) {
             Mensaje messageResponse = new Mensaje();
-            messageResponse.buildMessageBdError(e.getCause().getCause().getCause().getMessage());
+            messageResponse.setError(e.getCause().getCause().getCause().getMessage());
             return Response.ok(messageResponse).status(Response.Status.BAD_REQUEST).build();
         }
 
@@ -116,7 +115,7 @@ public class MovimientoController {
 
         } catch (Exception e) {
             Mensaje messageResponse = new Mensaje();
-            messageResponse.buildMessageBdError(e.getCause().getCause().getCause().getMessage());
+            messageResponse.setError(e.getCause().getCause().getCause().getMessage());
             return Response.ok(messageResponse).status(Response.Status.BAD_REQUEST).build();
         }
 

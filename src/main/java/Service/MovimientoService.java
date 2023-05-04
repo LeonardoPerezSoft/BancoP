@@ -75,7 +75,7 @@ public class MovimientoService implements PanacheRepository<Movimiento> {
                         cuentaAsociada.setSaldoInicial(saldoInicial - movimiento.getValor());
                     else
                         throw new IllegalArgumentException(
-                                "ERROR: Saldo no disponible. Detail: Tiene un saldo de " + saldoInicial
+                                "saldo no disponible.  Tiene un saldo de " + saldoInicial
                                         + ", insuficiente para realizar el retiro");
                     break;
                 case "Deposito":

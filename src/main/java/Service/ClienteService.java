@@ -1,7 +1,6 @@
 package Service;
 
 import Entities.Cliente;
-import Entities.Persona;
 import Repository.ClienteRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -39,7 +38,7 @@ public class ClienteService {
         clienteExistente.setDireccion(cliente.getDireccion());
         clienteExistente.setTelefono(cliente.getTelefono());
         clienteExistente.setContrasena(cliente.getContrasena());
-        clienteExistente.setEstado(cliente.getEstado());
+        clienteExistente.setEstado(cliente.isEstado());
         clienteRepository.persist(clienteExistente);
         return clienteExistente;
     }

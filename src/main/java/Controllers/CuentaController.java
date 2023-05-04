@@ -1,7 +1,6 @@
 package Controllers;
 
 
-import Entities.Cliente;
 import Entities.Cuenta;
 import Exceptions.Mensaje;
 import Service.CuentaService;
@@ -48,7 +47,7 @@ public class CuentaController {
 
         } catch (Exception e) {
             Mensaje messageResponse = new Mensaje();
-            messageResponse.buildMessageBdError(e.getCause().getCause().getCause().getMessage());
+            messageResponse.setError(e.getCause().getCause().getCause().getMessage());
             return Response.ok(messageResponse).status(Response.Status.BAD_REQUEST).build();
         }
     }
@@ -59,14 +58,13 @@ public class CuentaController {
     public Response createCuenta(Cuenta cuenta) {
         try {
             Cuenta createdCuenta = cuentaService.crearCuenta(cuenta);
-            System.out.println("/////////////////////////////////////////////////////");
             System.out.println(createdCuenta);
             return Response.ok(createdCuenta).status(Response.Status.CREATED).build();
 
         } catch (Exception e) {
 
             Mensaje messageResponse = new Mensaje();
-            messageResponse.buildMessageBdError(e.getCause().getMessage());
+            messageResponse.setError(e.getCause().getMessage());
             return Response.ok(messageResponse).status(Response.Status.BAD_REQUEST).build();
         }
     }
@@ -92,7 +90,7 @@ public class CuentaController {
 
         } catch (Exception e) {
             Mensaje messageResponse = new Mensaje();
-            messageResponse.buildMessageBdError(e.getCause().getCause().getCause().getMessage());
+            messageResponse.setError(e.getCause().getCause().getCause().getMessage());
             return Response.ok(messageResponse).status(Response.Status.BAD_REQUEST).build();
         }
 
@@ -118,14 +116,11 @@ public class CuentaController {
 
         } catch (Exception e) {
             Mensaje messageResponse = new Mensaje();
-            messageResponse.buildMessageBdError(e.getCause().getCause().getCause().getMessage());
+            messageResponse.setError(e.getCause().getCause().getCause().getMessage());
             return Response.ok(messageResponse).status(Response.Status.BAD_REQUEST).build();
         }
 
     }
-
-
-
 
 
 }

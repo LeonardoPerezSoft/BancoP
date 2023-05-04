@@ -47,7 +47,7 @@ public class ClienteController {
 
         } catch (Exception e) {
             Mensaje messageResponse = new Mensaje();
-            messageResponse.buildMessageBdError(e.getCause().getCause().getCause().getMessage());
+            messageResponse.setError(e.getCause().getCause().getCause().getMessage());
             return Response.ok(messageResponse).status(Response.Status.BAD_REQUEST).build();
         }
     }
@@ -59,10 +59,12 @@ public class ClienteController {
            Cliente createdCliente = clienteService.crearCliente(cliente);
            return Response.ok(createdCliente).status(Response.Status.CREATED).build();
        } catch (Exception e) {
+//       throw new WebApplicationException("Error creando user: " + e.getMessage(), Response.Status.BAD_REQUEST);
            Mensaje messageResponse = new Mensaje();
-           messageResponse.buildMessageBdError(e.getCause().getCause().getCause().getMessage());
-           return Response.ok(messageResponse).status(Response.Status.BAD_REQUEST).build();
-       }
+           messageResponse.setError(e.getCause().getCause().getMessage());
+         return Response.ok(messageResponse).status(Response.Status.BAD_REQUEST).build();
+
+                    }
     }
 
     @PUT
@@ -86,7 +88,7 @@ public class ClienteController {
 
         } catch (Exception e) {
             Mensaje messageResponse = new Mensaje();
-            messageResponse.buildMessageBdError(e.getCause().getCause().getCause().getMessage());
+            messageResponse.setError(e.getCause().getCause().getCause().getMessage());
             return Response.ok(messageResponse).status(Response.Status.BAD_REQUEST).build();
         }
 
@@ -111,7 +113,7 @@ public class ClienteController {
 
         } catch (Exception e) {
             Mensaje messageResponse = new Mensaje();
-            messageResponse.buildMessageBdError(e.getCause().getCause().getCause().getMessage());
+            messageResponse.setError(e.getCause().getCause().getCause().getMessage());
             return Response.ok(messageResponse).status(Response.Status.BAD_REQUEST).build();
         }
 

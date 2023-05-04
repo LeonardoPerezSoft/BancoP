@@ -27,9 +27,7 @@ public class Cuenta {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey(name = "cuenta_fk"))
-    @OnDelete(action = OnDeleteAction.RESTRICT)
     private Cliente cliente;
-
 
     public Long getId() {
         return id;

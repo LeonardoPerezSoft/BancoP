@@ -1,16 +1,12 @@
 package Service;
 
-import Entities.Cliente;
 import Entities.Cuenta;
 
-import Entities.Movimiento;
 import Repository.CuentaRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 @ApplicationScoped
 public class CuentaService {

@@ -33,7 +33,7 @@ public class ReporteController {
 
         } catch (Exception e) {
             Mensaje messageResponse = new Mensaje();
-            messageResponse.buildMessageBdError(e.getMessage());
+            messageResponse.setError(e.getCause().getCause().getCause().getMessage());
             return Response.ok(messageResponse).status(Response.Status.BAD_REQUEST).build();
         }
         }

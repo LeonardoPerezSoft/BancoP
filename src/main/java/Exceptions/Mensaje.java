@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Mensaje {
     private String error;
-    private String detalle;
+   // private String detalle;
     private String notificacion;
 
 
@@ -32,27 +32,29 @@ public class Mensaje {
 
     public void setError(String error) {
         this.error = error;
-    }
-
-    public String getDetalle() {
-        return detalle;
-    }
-
-    public void setDetalle(String detalle) {
-        this.detalle = detalle;
-    }
-
-    public void buildMessageBdError(String mensaje){
-        String[] items = mensaje.split("Detail: ");
-        setError(items[0].split("ERROR: ")[1]);
-        setDetalle(items[1]);
         LocalDateTime now = LocalDateTime.now();
         setData(now);
     }
 
+//    public String getDetalle() {
+//        return detalle;
+//    }
+//
+//    public void setDetalle(String detalle) {
+//        this.detalle = detalle;
+//    }
+
+//    public void buildMessageBdError(String mensaje){
+//        String[] items = mensaje.split("Detail: ");
+//        setError(items[0].split("ERROR: ")[1]);
+//        setDetalle(items[1]);
+//        LocalDateTime now = LocalDateTime.now();
+//        setData(now);
+//    }
+
      public void mensajeNotFound(String mensajeN){
          setError(mensajeN);
-         setDetalle(mensajeN);
+
          LocalDateTime now = LocalDateTime.now();
          setData(now);
     }

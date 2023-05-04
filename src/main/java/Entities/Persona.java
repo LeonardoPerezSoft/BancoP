@@ -1,6 +1,9 @@
 package Entities;
 
+import io.quarkus.agroal.DataSource;
+import jakarta.inject.Inject;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Check;
 
 
 @Entity
@@ -11,6 +14,8 @@ public abstract class Persona {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private String nombre;
+
+    @Check(constraints = "genero = 'Masculino' OR genero = 'Femenino'")
     private String genero;
     private int edad;
     @Column(unique = true)
