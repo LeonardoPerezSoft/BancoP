@@ -1,15 +1,8 @@
 package Entities;
 
-import Entities.Movimiento;
-
-import io.smallrye.common.constraint.NotNull;
 import jakarta.persistence.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Cuenta {
@@ -24,6 +17,18 @@ public class Cuenta {
     private float saldoInicial;
     private boolean estado;
 
+
+    public Cuenta() {
+    }
+
+    public Cuenta(Long id, String numeroCuenta, String tipoCuenta, float saldoInicial, boolean estado, Cliente cliente) {
+        this.id = id;
+        this.numeroCuenta = numeroCuenta;
+        this.tipoCuenta = tipoCuenta;
+        this.saldoInicial = saldoInicial;
+        this.estado = estado;
+        this.cliente = cliente;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey(name = "cuenta_fk"))
@@ -77,16 +82,18 @@ public class Cuenta {
         this.cliente = cliente;
     }
 
+
     @Override
-    public String toString() {
-        return "Cuenta{" +
-                "id=" + id +
-                ", numeroCuenta='" + numeroCuenta + '\'' +
-                ", tipoCuenta='" + tipoCuenta + '\'' +
-                ", saldoInicial=" + saldoInicial +
-                ", estado=" + estado +
-                ", cliente=" + cliente.getId() +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cuenta cuenta = (Cuenta) o;
+        return Float.compare(cuenta.saldoInicial, saldoInicial) == 0 && estado == cuenta.estado && Objects.equals(id, cuenta.id) && Objects.equals(numeroCuenta, cuenta.numeroCuenta) && Objects.equals(tipoCuenta, cuenta.tipoCuenta) && Objects.equals(cliente, cuenta.cliente);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, numeroCuenta, tipoCuenta, saldoInicial, estado, cliente);
     }
 }
 

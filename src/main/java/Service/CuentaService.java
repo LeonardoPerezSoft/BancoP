@@ -14,7 +14,11 @@ public class CuentaService {
     @Inject
     CuentaRepository cuentaRepository;
 
-//    @Inject
+    public CuentaService(CuentaRepository cuentaRepository) {
+        this.cuentaRepository = cuentaRepository;
+    }
+
+    //    @Inject
 //    MovimientoService movimientoService;
 
 
